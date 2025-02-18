@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d307696d15cbdb842a77848c5f96479f, type: 3}
+  m_Name: healthPotion
+  m_EditorClassIdentifier: 
+  potionName: healing
+  potionDescription: A strong fragrance of ginger, turmeric and honey hits you. You
+    feel warm inside just from its scent.
+  potionSprite: {fileID: 21300000, guid: 3de9f17ac56350e448e424548b1730bb, type: 3}
+  potionColor: {r: 0.9924528, g: 0.21101275, b: 0.080519676, a: 1}
+  isBoon: 1
