@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d307696d15cbdb842a77848c5f96479f, type: 3}
-  m_Name: healthPotion
+  m_Name: explosivePotion
   m_EditorClassIdentifier: 
-  potionName: healing
-  potionDescription: A strong fragrance of ginger, turmeric and honey hits you. You
-    feel warm inside just from its scent.
+  potionName: excitement
+  potionDescription: The sizzle of hot oil greets you, with a spark of something
+    you cannot name
   potionSprite: {fileID: 21300000, guid: 3de9f17ac56350e448e424548b1730bb, type: 3}
-  potionColor: {r: 0.5176471, g: 0.16862746, b: 0.1254902, a: 1}
-  isBoon: 1
-  healthChange: 5
+  potionColor: {r: 0.7433963, g: 0.36629358, b: 0.16130286, a: 1}
+  isBoon: 0
+  healthChange: -10
   staminaChange: 0

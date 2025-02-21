@@ -15,9 +15,7 @@ public class playerMovement : MonoBehaviour
     public float dPadRadius;
     public Touch theTouch;
 
-    float xlim = 2.2f;
-    float ylimPos = 3.8f;
-    float ylimNeg = -0.89f;
+    public playerAttack playerAttackScript;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +24,10 @@ public class playerMovement : MonoBehaviour
 
         //makes the character look down by default
         lookDirection = new Vector2(0, -1);
+
+        // get the attack script
+        playerAttackScript = GetComponentInChildren<playerAttack>();
+        playerAttackScript.TestFunction();
     }
 
     // Update is called once per frame
@@ -41,6 +43,15 @@ public class playerMovement : MonoBehaviour
 
         //moves the player
         transform.Translate(inputDirection * moveSpeed * Time.deltaTime);
+    }
+
+    public void attack()
+    {
+        if(Time.timeScale == 1)
+        {
+            anim.SetTrigger("Attack");
+            playerAttackScript.ActivateAttackBox();
+        }
     }
 
 
@@ -81,11 +92,6 @@ public class playerMovement : MonoBehaviour
         anim.SetFloat("inputY", lookDirection.y);
         anim.SetFloat("lookX", lookDirection.x);
         anim.SetFloat("lookY", lookDirection.y);
-    }
-
-    public void attack()
-    {
-        anim.SetTrigger("Attack");
     }
 
     void calculateMobileInput()

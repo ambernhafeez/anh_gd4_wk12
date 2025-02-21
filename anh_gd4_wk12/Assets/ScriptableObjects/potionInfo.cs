@@ -10,4 +10,8 @@ public class potionInfo : ScriptableObject
     public Color potionColor;
 
     public bool isBoon;
+
+    public float healthChange;
+    public float staminaChange;
+
 }
