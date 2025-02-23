@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -24,14 +25,24 @@ public class playerStats : MonoBehaviour
     public GameObject potionObject;
 
     public playerAttack playerAttackScript;
+    public buttonFunctions buttonScript;
+
+    public GameObject gameOverUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        health = 10;
+        stamina = 10;
+        potionCount = 0;
+        gameOver = false;
+        
         healthBar.fillAmount = health/healthMax;
         staminaBar.fillAmount = stamina/staminaMax;
         potionDisplayScript = FindFirstObjectByType<potionDisplay>().GetComponent<potionDisplay>();
         playerAttackScript = GetComponentInChildren<playerAttack>();
+        buttonScript = FindFirstObjectByType<buttonFunctions>().GetComponent<buttonFunctions>();
+
     }
 
     // Update is called once per frame
@@ -51,6 +62,7 @@ public class playerStats : MonoBehaviour
         {
             gameOver = true;
             Debug.Log("Game Over!!");
+            GameOverBehaviour();
         }
         
     }
@@ -65,6 +77,8 @@ public class playerStats : MonoBehaviour
         else
         {
             gameOver = true;
+            Debug.Log("Game Over!!");
+            GameOverBehaviour();
         }
     }
 
@@ -81,6 +95,7 @@ public class playerStats : MonoBehaviour
             Debug.Log("collided with potion");
 
             // display card
+            buttonScript.ChangeCurrentUI(buttonScript.cardOverlay);
             potionDisplayScript.ShowPotionCard(thePotionInfo);
             // pause game
             Time.timeScale = 0;
@@ -100,6 +115,18 @@ public class playerStats : MonoBehaviour
     {
         potionCount ++;
         potionCountText.text = "" + potionCount;
+
+        if (potionCount >= 16)
+        {
+            buttonScript.ChangeCurrentUI(buttonScript.winOverlay);
+        } 
     }
 
+    public void GameOverBehaviour()
+    {
+        // go into gameoverscreenmanager and call the SetUIActive function inside the buttonFunctions.cs script
+        Debug.Log("gameover function called");
+
+        buttonScript.ChangeCurrentUI(buttonScript.gameOverScreen);
+    }
 }

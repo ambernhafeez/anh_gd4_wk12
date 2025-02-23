@@ -50,7 +50,7 @@ public class playerAttack : MonoBehaviour
 
     private IEnumerator DisableAttackBox()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         attackBox.enabled = false;
     }
 }

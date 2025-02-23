@@ -1,15 +1,39 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
-    public GameObject uiDisplayed;
+    public GameObject startMenu;
+    public GameObject gameOverScreen;
+    public GameObject cardOverlay;
+    public GameObject winOverlay;
+
+    GameObject uiDisplayed;
     Button aButton;
     Button bButton;
     public playerStats PlayerStatsScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        // first display start menu
+        uiDisplayed = startMenu;
+        SetUIActive();
+
+        PlayerStatsScript = FindFirstObjectByType<playerStats>().GetComponent<playerStats>();
+
+        GetCurrentButtons();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void GetCurrentButtons()
     {
         // find all the buttons in the public uiDisplayed gameobject
         Button[] buttons = uiDisplayed.GetComponentsInChildren<Button>(true);
@@ -19,6 +43,7 @@ public class buttonFunctions : MonoBehaviour
         {
             if (button.gameObject.name == "aButton")
             {
+                Debug.Log("assigned a button");
                 aButton = button;
             }
             else if (button.gameObject.name == "bButton")
@@ -26,14 +51,6 @@ public class buttonFunctions : MonoBehaviour
                 bButton = button;
             }
         }
-
-        PlayerStatsScript = FindFirstObjectByType<playerStats>().GetComponent<playerStats>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     // assigned to the menu buttons
@@ -71,4 +88,29 @@ public class buttonFunctions : MonoBehaviour
         PlayerStatsScript.CountPotions();
         Destroy(PlayerStatsScript.potionObject);
     }
+    
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+        //uiDisplayed.SetActive(false);
+    }
+
+    public void SetUIActive()
+    {
+        uiDisplayed.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ChangeCurrentUI(GameObject uiOverlay)
+    {
+        uiDisplayed = uiOverlay;
+        GetCurrentButtons();
+        SetUIActive();
+    }
+    
+    public void ActivateMenu()
+    {
+        RestartGame();
+    }
+
 }
